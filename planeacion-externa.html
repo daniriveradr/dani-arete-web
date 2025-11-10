@@ -49,227 +49,35 @@
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="css/style.css" />
     <script src="https://unpkg.com/feather-icons"></script>
-    <style>
-      :root {
-        --bg-primary: #0a0a0f;
-        --bg-secondary: #151520;
-        --accent-primary: #7c3aed;
-        --accent-secondary: #a855f7;
-        --accent-glow: #c084fc;
-        --text-primary: #e5e7eb;
-        --text-secondary: #9ca3af;
-        --border: rgba(124, 58, 237, 0.2);
-        --shadow-color: rgba(124, 58, 237, 0.3);
-      }
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        font-family: "Inter", sans-serif;
-        background: var(--bg-primary);
-        color: var(--text-primary);
-        line-height: 1.6;
-        overflow-x: hidden;
-      }
-      .preloader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--bg-primary);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-        transition: opacity 0.5s ease, visibility 0.5s ease;
-      }
-      .preloader.hidden {
-        opacity: 0;
-        visibility: hidden;
-      }
-      .spinner {
-        width: 60px;
-        height: 60px;
-        border: 4px solid var(--border);
-        border-top-color: var(--accent-primary);
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-      }
-      header {
-        position: sticky;
-        top: 0;
-        width: 100%;
-        padding: 1.2rem 5%;
-        background: rgba(10, 10, 15, 0.8);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid var(--border);
-        z-index: 1000;
-        transition: all 0.3s ease;
-      }
-      header.scrolled {
-        padding: 0.8rem 5%;
-      }
-      nav {
-        max-width: 1400px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      /* ===== NUEVOS ESTILOS PARA EL LOGO DE IMAGEN Y ANIMACIÓN ===== */
-      .logo {
-        text-decoration: none;
-      }
-      .logo-img {
-        height: 45px;
-        animation: neon-glow 3s infinite alternate;
-        transition: transform 0.3s ease;
-        display: block;
-      }
-      .logo-img:hover {
-        transform: scale(1.05);
-      }
-      @keyframes neon-glow {
-        0%,
-        100% {
-          filter: drop-shadow(0 0 4px var(--accent-glow))
-            drop-shadow(0 0 8px var(--accent-glow));
-        }
-        50% {
-          filter: drop-shadow(0 0 8px var(--accent-primary))
-            drop-shadow(0 0 16px var(--accent-primary));
-        }
-      }
-      /* ===== FIN DE NUEVOS ESTILOS ===== */
-      .nav-links {
-        display: flex;
-        gap: 1.5rem;
-        list-style: none;
-      }
-      .nav-links a {
-        color: var(--text-secondary);
-        text-decoration: none;
-        font-weight: 600;
-        transition: color 0.3s ease;
-        position: relative;
-        padding: 5px 0;
-      }
-      .nav-links a::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: var(--accent-primary);
-        transition: width 0.3s ease;
-      }
-      .nav-links a:hover,
-      .nav-links a.active {
-        color: var(--accent-glow);
-      }
-      .nav-links a:hover::after,
-      .nav-links a.active::after {
-        width: 100%;
-      }
-      section {
-        padding: 6rem 5%;
-        max-width: 1400px;
-        margin: 0 auto;
-      }
-      .section-title {
-        font-family: "Orbitron", sans-serif;
-        font-size: clamp(2rem, 4vw, 2.8rem);
-        text-align: center;
-        margin-bottom: 4rem;
-        background: linear-gradient(
-          135deg,
-          var(--accent-primary),
-          var(--accent-glow)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-      .card {
-        background: var(--bg-secondary);
-        padding: 2.5rem;
-        border-radius: 16px;
-        border: 1px solid var(--border);
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-        margin-bottom: 2rem;
-      }
-      .card:hover {
-        transform: translateY(-10px);
-        border-color: var(--accent-primary);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-      }
-      h3 {
-        font-family: "Orbitron", sans-serif;
-        font-size: 1.8rem;
-        margin-bottom: 1.5rem;
-        color: var(--accent-glow);
-      }
-      p {
-        color: var(--text-secondary);
-        margin-bottom: 1rem;
-      }
-      blockquote {
-        font-style: italic;
-        color: var(--text-primary);
-        border-left: 3px solid var(--accent-primary);
-        padding-left: 1rem;
-        margin-top: 1rem;
-      }
-      .grid-layout-4 {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-      }
-      footer {
-        text-align: center;
-        padding: 3rem 5%;
-        margin-top: 4rem;
-        border-top: 1px solid var(--border);
-        color: var(--text-secondary);
-      }
-      .main-content {
-        min-height: calc(100vh - 105px - 121px);
-      }
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-    </style>
   </head>
   <body>
     <div class="preloader" id="preloader"><div class="spinner"></div></div>
 
     <header id="header">
       <nav>
-        <!-- ================== CAMBIO DE LOGO [INICIO] ================== -->
         <a href="index.html" class="logo">
           <img src="img/logoda.png" alt="Dani Areté Logo" class="logo-img" />
         </a>
-        <!-- =================== CAMBIO DE LOGO [FIN] ==================== -->
         <ul class="nav-links">
           <li><a href="index.html">Inicio</a></li>
           <li><a href="autoconocimiento.html">Autoconocimiento</a></li>
           <li><a href="planeacion-interna.html">Plan. Interna</a></li>
-          <li>
-            <a href="planeacion-externa.html" class="active">Plan. Externa</a>
-          </li>
+          <li><a href="planeacion-externa.html">Plan. Externa</a></li>
           <li><a href="promesa-de-valor.html">Promesa de Valor</a></li>
+          <li class="mobile-only">
+            <a class="cta-btn" href="index.html#contacto">Contacto</a>
+          </li>
         </ul>
+        <div class="header-cta">
+          <!-- Este botón solo se ve en escritorio -->
+          <a class="cta-btn desktop-only" href="index.html#contacto"
+            >Conectar</a
+          >
+          <!-- Este es el botón hamburguesa para móvil -->
+          <button id="menu-toggle" class="menu-toggle"><span></span></button>
+        </div>
       </nav>
     </header>
 
@@ -351,29 +159,6 @@
       </p>
     </footer>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const e = document.getElementById("preloader");
-        e &&
-          setTimeout(() => {
-            e.classList.add("hidden");
-          }, 300),
-          feather.replace();
-        const t = document.getElementById("header");
-        t &&
-          window.addEventListener("scroll", () => {
-            window.scrollY > 50
-              ? t.classList.add("scrolled")
-              : t.classList.remove("scrolled");
-          });
-        const n = document.getElementById("year");
-        n && (n.textContent = new Date().getFullYear());
-        const a = window.location.pathname.split("/").pop() || "index.html",
-          o = document.querySelectorAll(".nav-links a");
-        o.forEach((e) => {
-          e.getAttribute("href") === a && e.classList.add("active");
-        });
-      });
-    </script>
+    <script src="js/main.js"></script>
   </body>
 </html>
