@@ -1,109 +1,310 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Promesa de Valor — Dani Areté</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promesa de Valor – Dani Areté</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+      :root {
+        --bg-primary: #0a0a0f;
+        --bg-secondary: #151520;
+        --accent-primary: #7c3aed;
+        --accent-secondary: #a855f7;
+        --accent-glow: #c084fc;
+        --text-primary: #e5e7eb;
+        --text-secondary: #9ca3af;
+        --border: rgba(124, 58, 237, 0.2);
+        --shadow-color: rgba(124, 58, 237, 0.3);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--bg-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+      }
+      .preloader.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+      .spinner {
+        width: 60px;
+        height: 60px;
+        border: 4px solid var(--border);
+        border-top-color: var(--accent-primary);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        padding: 1.5rem 5%;
+        background: rgba(10, 10, 15, 0.8);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+      header.scrolled {
+        padding: 1rem 5%;
+        background: rgba(10, 10, 15, 0.95);
+      }
+      nav {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        font-family: "Orbitron", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 900;
+        background: linear-gradient(
+          135deg,
+          var(--accent-primary),
+          var(--accent-glow)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: 2px;
+        text-decoration: none;
+      }
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+      }
+      .nav-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+        position: relative;
+        padding: 5px 0;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent-primary);
+        transition: width 0.3s ease;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--accent-glow);
+      }
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        width: 100%;
+      }
+      section {
+        padding: 6rem 5%;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .section-title {
+        font-family: "Orbitron", sans-serif;
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        text-align: center;
+        margin-bottom: 4rem;
+        background: linear-gradient(
+          135deg,
+          var(--accent-primary),
+          var(--accent-glow)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .card {
+        background: var(--bg-secondary);
+        padding: 2.5rem;
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 2rem;
+      }
+      .card:hover {
+        transform: translateY(-10px);
+        border-color: var(--accent-primary);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+      h3 {
+        font-family: "Orbitron", sans-serif;
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        color: var(--accent-glow);
+      }
+      p {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+      }
+      blockquote {
+        font-style: italic;
+        font-size: 1.2rem;
+        text-align: center;
+        color: var(--text-primary);
+        border-left: 3px solid var(--accent-primary);
+        padding: 1rem;
+        max-width: 900px;
+        margin: 1rem auto;
+      }
+      .grid-layout-4 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+      footer {
+        text-align: center;
+        padding: 3rem 5%;
+        margin-top: 4rem;
+        border-top: 1px solid var(--border);
+        color: var(--text-secondary);
+      }
+      .main-content {
+        min-height: calc(100vh - 105px - 121px);
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="preloader">
-      <div class="spinner"></div>
-    </div>
-    <header>
-      <div class="nav-inner">
-        <div class="brand"><a href="index.html">DANI ARETÉ</a></div>
-        <nav id="main-nav">
-          <ul>
-            <li><a href="autoconocimiento.html">Autoconocimiento</a></li>
-            <li><a href="planeacion-interna.html">Planeción Interna</a></li>
-            <li><a href="planeacion-externa.html">Planeación Externa</a></li>
-            <li>
-              <a href="promesa-de-valor.html" class="nav-active"
-                >Promesa de Valor</a
-              >
-            </li>
-            <li class="mobile-only">
-              <a class="cta-small" href="index.html#contacto">Contacto</a>
-            </li>
-          </ul>
-        </nav>
-        <div class="header-cta">
-          <a class="cta-small desktop-only" href="index.html#contacto"
-            >Contacto</a
-          >
-          <button id="menu-toggle" class="menu-toggle"><span></span></button>
-        </div>
-      </div>
+    <div class="preloader" id="preloader"><div class="spinner"></div></div>
+
+    <header id="header">
+      <nav>
+        <a href="index.html" class="logo">DANI ARETÉ</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="autoconocimiento.html">Autoconocimiento</a></li>
+          <li><a href="planeacion-interna.html">Plan. Interna</a></li>
+          <li><a href="planeacion-externa.html">Plan. Externa</a></li>
+          <li><a href="promesa-de-valor.html">Promesa de Valor</a></li>
+        </ul>
+      </nav>
     </header>
+
     <main class="main-content">
-      <div class="wrap">
-        <section class="section fade-in-section">
-          <h2 class="section-title">4.1. Promesa de Valor</h2>
-          <div class="card card--centered" style="margin-bottom: 4rem">
-            <h3>Mi Promesa</h3>
-            <p style="font-size: 1.2rem">
-              "Yo, <strong>Dani Areté</strong>, sé hacer
-              <strong>sistemas de crecimiento</strong> basados en
-              <strong>Ingeniería de IA</strong> y
-              <strong>Disciplina Implacable</strong>, para personas ambiciosas
-              que sufren de ansiedad por el estancamiento, transformando
-              pasiones en una marca rentable y perdurable."
+      <section>
+        <h2 class="section-title">Fase 4: Promesa de Valor</h2>
+
+        <div class="card">
+          <h3>Mi Promesa de Valor</h3>
+          <blockquote>
+            Yo, Dani Areté, sé hacer sistemas de crecimiento personal,
+            profesional y físico basados en la Ingeniería de IA y la Disciplina
+            implacable, para personas ambiciosas que buscan la excelencia
+            integral (Areté) y sufren de ansiedad por el estancamiento, con una
+            metodología analítica que unifica el rendimiento físico, la
+            estrategia de marketing y el conocimiento técnico, garantizando la
+            estabilidad financiera y mental a través de la transformación de sus
+            pasiones en una marca rentable y perdurable.
+          </blockquote>
+        </div>
+
+        <h2 class="section-title" style="margin-top: 6rem">
+          Factor Diferenciador (Motivos para Creer)
+        </h2>
+        <div class="grid-layout-4">
+          <div class="card">
+            <h3>El Ingeniero Analítico</h3>
+            <p>
+              Crees en un sistema, no en la improvisación. El público confía en
+              la base técnica de tu enfoque fitness y de marketing.
             </p>
           </div>
-          <h2 class="section-title">
-            4.2. Factor Diferenciador (Motivos para Creer)
-          </h2>
-          <div
-            class="projects-grid"
-            style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))"
-          >
-            <div class="card">
-              <h3>El Ingeniero Analítico</h3>
-              <p>
-                Crees en un sistema, no en la improvisación. El público confía
-                en la base técnica de tu enfoque fitness y de marketing.
-              </p>
-            </div>
-            <div class="card">
-              <h3>El Líder Autodidacta</h3>
-              <p>
-                Crees en la prueba y error, no en los gurús. Demuestras que el
-                éxito se construye con esfuerzo personal.
-              </p>
-            </div>
-            <div class="card">
-              <h3>La Obsesión por Areté</h3>
-              <p>
-                Crees en la coherencia. La disciplina para levantar peso es la
-                misma que para duplicar tu salario.
-              </p>
-            </div>
-            <div class="card">
-              <h3>El Lado Humano</h3>
-              <p>
-                Crees en la honestidad. Muestras la lucha contra la ansiedad,
-                convirtiendo la debilidad en un motor de acción.
-              </p>
-            </div>
+          <div class="card">
+            <h3>El Líder Autodidacta</h3>
+            <p>
+              Crees en la prueba y error, no en los gurús. Demuestras que el
+              éxito se construye con esfuerzo personal (Inglés C1, 3D,
+              certificaciones).
+            </p>
           </div>
-        </section>
-      </div>
+          <div class="card">
+            <h3>La Obsesión por Areté</h3>
+            <p>
+              Crees en la coherencia. La disciplina que te lleva a levantar peso
+              es la misma que te lleva a duplicar tu salario.
+            </p>
+          </div>
+          <div class="card">
+            <h3>El Lado Humano</h3>
+            <p>
+              Crees en la honestidad. Muestras la lucha contra la ansiedad
+              financiera, convirtiendo la debilidad en un motor de acción.
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
+
     <footer>
       <p>
         © <span id="year"></span> Dani Areté. Forjado con disciplina y código.
       </p>
     </footer>
-    <script src="script.js"></script>
-    <a href="#" id="back-to-top" class="back-to-top-btn" title="Volver Arriba"
-      >↑</a
-    >
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const e = document.getElementById("preloader");
+        e &&
+          setTimeout(() => {
+            e.classList.add("hidden");
+          }, 300),
+          feather.replace();
+        const t = document.getElementById("header");
+        t &&
+          window.addEventListener("scroll", () => {
+            window.scrollY > 50
+              ? t.classList.add("scrolled")
+              : t.classList.remove("scrolled");
+          });
+        const n = document.getElementById("year");
+        n && (n.textContent = new Date().getFullYear());
+        const a = window.location.pathname.split("/").pop() || "index.html",
+          o = document.querySelectorAll(".nav-links a");
+        o.forEach((e) => {
+          e.getAttribute("href") === a && e.classList.add("active");
+        });
+      });
+    </script>
   </body>
 </html>

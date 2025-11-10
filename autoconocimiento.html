@@ -1,112 +1,303 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Autoconocimiento — Dani Areté</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Autoconocimiento – Dani Areté</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+      :root {
+        --bg-primary: #0a0a0f;
+        --bg-secondary: #151520;
+        --accent-primary: #7c3aed;
+        --accent-secondary: #a855f7;
+        --accent-glow: #c084fc;
+        --text-primary: #e5e7eb;
+        --text-secondary: #9ca3af;
+        --border: rgba(124, 58, 237, 0.2);
+        --shadow-color: rgba(124, 58, 237, 0.3);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--bg-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+      }
+      .preloader.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+      .spinner {
+        width: 60px;
+        height: 60px;
+        border: 4px solid var(--border);
+        border-top-color: var(--accent-primary);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        padding: 1.5rem 5%;
+        background: rgba(10, 10, 15, 0.8);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+      header.scrolled {
+        padding: 1rem 5%;
+        background: rgba(10, 10, 15, 0.95);
+      }
+      nav {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        font-family: "Orbitron", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 900;
+        background: linear-gradient(
+          135deg,
+          var(--accent-primary),
+          var(--accent-glow)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: 2px;
+        text-decoration: none;
+      }
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+      }
+      .nav-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+        position: relative;
+        padding: 5px 0;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent-primary);
+        transition: width 0.3s ease;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--accent-glow);
+      }
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        width: 100%;
+      }
+      .cta-btn {
+        padding: 0.75rem 1.5rem;
+        background: linear-gradient(
+          135deg,
+          var(--accent-primary),
+          var(--accent-secondary)
+        );
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        display: inline-block;
+      }
+      .cta-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px var(--shadow-color);
+      }
+      section {
+        padding: 6rem 5%;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .section-title {
+        font-family: "Orbitron", sans-serif;
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        text-align: center;
+        margin-bottom: 4rem;
+        background: linear-gradient(
+          135deg,
+          var(--accent-primary),
+          var(--accent-glow)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .card {
+        background: var(--bg-secondary);
+        padding: 2.5rem;
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 2rem;
+      }
+      .card:hover {
+        transform: translateY(-10px);
+        border-color: var(--accent-primary);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+      h3 {
+        font-family: "Orbitron", sans-serif;
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        color: var(--accent-glow);
+      }
+      p {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+      }
+      .grid-layout {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+      }
+      .card ul {
+        list-style-position: inside;
+        padding-left: 1rem;
+      }
+      footer {
+        text-align: center;
+        padding: 3rem 5%;
+        margin-top: 4rem;
+        border-top: 1px solid var(--border);
+        color: var(--text-secondary);
+      }
+      .main-content {
+        min-height: calc(100vh - 105px - 121px);
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="preloader">
-      <div class="spinner"></div>
-    </div>
-    <header>
-      <div class="nav-inner">
-        <div class="brand"><a href="index.html">DANI ARETÉ</a></div>
-        <nav id="main-nav">
-          <ul>
-            <li>
-              <a href="autoconocimiento.html" class="nav-active"
-                >Autoconocimiento</a
-              >
-            </li>
-            <li><a href="planeacion-interna.html">Planeción Interna</a></li>
-            <li><a href="planeacion-externa.html">Planeación Externa</a></li>
-            <li><a href="promesa-de-valor.html">Promesa de Valor</a></li>
-            <li class="mobile-only">
-              <a class="cta-small" href="index.html#contacto">Contacto</a>
-            </li>
-          </ul>
-        </nav>
-        <div class="header-cta">
-          <a class="cta-small desktop-only" href="index.html#contacto"
-            >Contacto</a
-          >
-          <button id="menu-toggle" class="menu-toggle"><span></span></button>
-        </div>
-      </div>
+    <div class="preloader" id="preloader"><div class="spinner"></div></div>
+
+    <header id="header">
+      <nav>
+        <a href="index.html" class="logo">DANI ARETÉ</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="autoconocimiento.html">Autoconocimiento</a></li>
+          <li><a href="planeacion-interna.html">Plan. Interna</a></li>
+          <li><a href="planeacion-externa.html">Plan. Externa</a></li>
+          <li><a href="promesa-de-valor.html">Promesa de Valor</a></li>
+        </ul>
+      </nav>
     </header>
+
     <main class="main-content">
-      <div class="wrap">
-        <section class="section fade-in-section">
-          <h2 class="section-title">1. Autoconocimiento</h2>
+      <section>
+        <h2 class="section-title">Fase 1: Autoconocimiento</h2>
 
-          <!-- Mi Trayectoria -->
-          <div class="card" style="margin-bottom: 4rem">
-            <h3>Mi Trayectoria: La Forja de Areté</h3>
-            <p>
-              Durante los últimos diez años comencé a cultivar habilidades como
-              la creatividad, el diseño y el marketing, con la búsqueda de
-              explorar mis pasiones. La compensación económica me motiva a
-              mejorar, no solo por necesidad, sino por la satisfacción de la
-              superación y la búsqueda de la excelencia.
-            </p>
-            <p>
-              La pasión por el diseño y el automovilismo me llevó a aprender
-              modelado 3D, lo que me permitió obtener mi primer cliente y
-              trabajar como freelancer durante tres años, conectando con
-              clientes de EE. UU., Puerto Rico, Australia y Colombia. Esto me
-              impulsó a aprender inglés por mi cuenta, un reto que me tomó dos
-              años para pasar de un nivel A2 a B1.
-            </p>
-            <p>
-              A mediados de 2024, el trabajo como freelancer afectaba mi
-              bienestar, así que aproveché mi bilingüismo para trabajar en un
-              call center, buscando estabilidad y tiempo para nuevos desafíos.
-              Sin embargo, la rutina comenzó a afectar mi mente, por lo que me
-              inscribí en el gimnasio, un punto de inflexión que me ayudó a
-              construir disciplina.
-            </p>
-            <p>
-              Finalmente, una oportunidad como contratista en el sector público
-              me permitió elegir mi forma de trabajar. Con tiempo disponible,
-              sigo entrenando y practicando inglés, pero aún con la meta de
-              aumentar mis ingresos. Estudiar Ingeniería de Sistemas es el
-              siguiente gran objetivo, un reto que me obliga a salir de mi zona
-              de confort y que da vida a <strong>Dani Areté</strong>: una
-              personalidad que busca influir en otros para alcanzar la
-              autoeducación, la disciplina y la mejora constante.
-            </p>
-          </div>
+        <div class="card">
+          <h3>Mi Trayectoria: La Forja de Areté</h3>
+          <p>
+            Durante los últimos años comencé a cultivar habilidades como la
+            creatividad, el diseño y el marketing, con la búsqueda de explorar
+            mis pasiones. La compensación económica me motiva a mejorar, no solo
+            por necesidad, sino por la satisfacción de la superación y la
+            búsqueda de la excelencia.
+          </p>
+          <p>
+            La pasión por el diseño y el automovilismo me llevó a aprender
+            modelado 3D, lo que me permitió obtener mi primer cliente y trabajar
+            como freelancer durante tres años. Conectar con clientes de EE. UU.,
+            Puerto Rico, Australia y Colombia me impulsó a aprender inglés por
+            mi cuenta, un reto que me tomó dos años para pasar de un nivel A2 a
+            B1.
+          </p>
+          <p>
+            A mediados de 2024, el trabajo como freelancer afectaba mi
+            bienestar, así que aproveché mi bilingüismo para trabajar en un call
+            center. Sin embargo, la rutina comenzó a afectar mi mente, por lo
+            que me inscribí en el gimnasio, un punto de inflexión que me ayudó a
+            construir disciplina.
+          </p>
+          <p>
+            Finalmente, una oportunidad como contratista en el sector público me
+            permitió tener más control sobre mi tiempo. Hoy, sigo entrenando y
+            practicando inglés, con la meta de aumentar mis ingresos. Estudiar
+            Ingeniería de Sistemas es el siguiente gran objetivo, un reto que da
+            vida a <strong>Dani Areté</strong>: una personalidad que busca
+            influir en otros para alcanzar la autoeducación, la disciplina y la
+            mejora constante.
+          </p>
+        </div>
 
-          <!-- Dimensiones del Ser -->
-          <h2 class="section-title">Dimensiones del Ser</h2>
-          <div class="projects-grid" style="margin-bottom: 4rem">
-            <div class="card">
-              <h4>Cuerpo (Salud y Fitness) - 8/10</h4>
+        <div class="card">
+          <h3>Dimensiones del Ser y Pasiones</h3>
+          <div class="grid-layout">
+            <div>
+              <h4>Cuerpo (Salud y Fitness) - Calificación 8/10</h4>
               <p>
-                Constancia en el gimnasio durante 11 meses con un objetivo claro
-                de 70kg. La alimentación es fundamental. Debo mejorar la calidad
-                del sueño y el skincare, afectados por la falta de disciplina en
-                la gestión del tiempo.
+                He sido muy constante en el gimnasio durante los últimos 11
+                meses, con el objetivo de aumentar mi peso a 70kg. La
+                alimentación es fundamental, pero debo trabajar más en mi
+                calidad de sueño y skincare, ya que la falta de disciplina en la
+                gestión del tiempo afecta mi descanso.
               </p>
             </div>
-            <div class="card">
-              <h4>Espíritu (Valores)</h4>
+            <div>
+              <h4>Espíritu (Valores Clave)</h4>
               <p>
-                Mis valores son
-                <strong>Espiritualidad, Conocimiento y Desafío</strong>. Creo en
-                la filosofía griega de fortalecer cuerpo y mente para lograr la
-                excelencia, superando mi propia versión de ayer.
+                Mis tres valores guía son
+                <strong>Espiritualidad, Conocimiento y Desafío</strong>. Basado
+                en la filosofía de los antiguos griegos, busco fortalecer cuerpo
+                y mente para lograr la excelencia, superando mi propia versión
+                de ayer.
               </p>
             </div>
-            <div class="card">
+            <div>
               <h4>Emociones (Inteligencia Emocional)</h4>
               <p>
                 Mi principal detonante de estrés y ansiedad es la situación
@@ -116,119 +307,105 @@
               </p>
             </div>
           </div>
+        </div>
 
-          <!-- Habilidades -->
-          <div class="card" style="margin-bottom: 4rem">
-            <h3 class="card--centered">Habilidades Clave</h3>
-            <ul
-              class="manifest-list"
-              style="
-                margin-top: 20px;
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 10px 40px;
-              "
-            >
-              <li>🧠 Pensamiento analítico</li>
-              <li>🎨 Creatividad y diseño 3D</li>
-              <li>💪 Disciplina y constancia</li>
-              <li>🌍 Comunicación intercultural</li>
-              <li>🚀 Visión emprendedora</li>
-            </ul>
-          </div>
-
-          <!-- Análisis FODA -->
-          <h2 class="section-title">Análisis FODA Estratégico</h2>
-          <div
-            class="projects-grid"
-            style="grid-template-columns: 1fr 1fr; margin-bottom: 4rem"
-          >
-            <div class="card">
-              <h3>Fortalezas</h3>
-              <p>
-                Fusión de habilidades únicas (Bilingüismo, 3D, Marketing, IA),
-                disciplina probada y liderazgo natural.
-              </p>
+        <div class="card">
+          <h3>Análisis FODA Estratégico</h3>
+          <div class="grid-layout">
+            <div>
+              <h4>Fortalezas</h4>
+              <ul>
+                <li>
+                  <strong>Fusión de Habilidades Únicas:</strong> Bilingüismo,
+                  Modelado 3D, Marketing y Visión de IA.
+                </li>
+                <li>
+                  <strong>Disciplina Probada:</strong> Constancia en el gimnasio
+                  y auto-aprendizaje.
+                </li>
+                <li>
+                  <strong>Liderazgo Natural:</strong> Capacidad para tomar
+                  responsabilidad y guiar.
+                </li>
+              </ul>
             </div>
-            <div class="card">
-              <h3>Oportunidades</h3>
-              <p>
-                Usar IA para crear contenido viral, llenar el nicho que une
-                Ingeniería y Fitness, y aprovechar la estabilidad del trabajo
-                actual.
-              </p>
+            <div>
+              <h4>Oportunidades</h4>
+              <ul>
+                <li>
+                  <strong>AI-Driven Content:</strong> Aplicar la IA para
+                  analizar y optimizar contenido viral de fitness.
+                </li>
+                <li>
+                  <strong>Demanda de Nicho:</strong> Unir Ingeniería/IA con
+                  Fitness/Automovilismo.
+                </li>
+                <li>
+                  <strong>Rol Actual:</strong> Tiempo libre y estabilidad para
+                  desarrollar la marca.
+                </li>
+              </ul>
             </div>
-            <div class="card">
-              <h3>Debilidades</h3>
-              <p>
-                Vulnerabilidad emocional al estrés financiero que afecta la
-                salud y productividad. Falta de disciplina en la gestión del
-                tiempo (sueño).
-              </p>
+            <div>
+              <h4>Debilidades</h4>
+              <ul>
+                <li>
+                  <strong>Vulnerabilidad Emocional:</strong> El estrés
+                  financiero afecta directamente la salud y productividad.
+                </li>
+                <li>
+                  <strong>Gestión del Tiempo:</strong> Falta de disciplina en
+                  áreas críticas (sueño, organización).
+                </li>
+              </ul>
             </div>
-            <div class="card">
-              <h3>Amenazas</h3>
-              <p>
-                Saturación del nicho Fitness (requiere un diferenciador claro) y
-                la fluctuación financiera como principal detonante de ansiedad.
-              </p>
-            </div>
-          </div>
-
-          <!-- Rueda de la Vida -->
-          <h2 class="section-title">La Rueda de la Vida: El Mapa de Areté</h2>
-          <div class="projects-grid">
-            <div class="card">
-              <h4>Relaciones Personales (8/10)</h4>
-              <p>
-                <strong>Prioridad:</strong> Fuerte. Mantener y nutrir este pilar
-                de soporte.
-              </p>
-            </div>
-            <div class="card">
-              <h4>Salud Física/Fitness (7/10)</h4>
-              <p>
-                <strong>Prioridad:</strong> Buena Disciplina. Foco en calidad
-                del sueño y skincare.
-              </p>
-            </div>
-            <div class="card">
-              <h4>Desarrollo Personal (5/10)</h4>
-              <p>
-                <strong>Prioridad:</strong> Potencial. Invertir tiempo libre en
-                IA como motor de la marca.
-              </p>
-            </div>
-            <div class="card">
-              <h4>Carrera/Trabajo (4/10)</h4>
-              <p>
-                <strong>Prioridad:</strong> Estabilidad. Mantener mientras la
-                marca crece para mitigar la amenaza financiera.
-              </p>
-            </div>
-            <div class="card">
-              <h4>Ocio/Diversión (4/10)</h4>
-              <p>
-                <strong>Prioridad:</strong> Baja. Integrar el Modelado 3D en la
-                marca para hacerlo rentable (pasión + negocio).
-              </p>
-            </div>
-            <div class="card">
-              <h4>Finanzas/Economía (3/10)</h4>
-              <p>
-                <strong>Prioridad:</strong> CRÍTICA. Es la raíz de la mayor
-                debilidad. El crecimiento de la marca es la tarea principal.
-              </p>
+            <div>
+              <h4>Amenazas</h4>
+              <ul>
+                <li>
+                  <strong>Saturación del Nicho Fitness:</strong> Requiere un
+                  diferenciador claro (IA y el Sistema).
+                </li>
+                <li>
+                  <strong>Fluctuación Financiera:</strong> El principal
+                  detonante de ansiedad podría descarrilar la marca.
+                </li>
+              </ul>
             </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </main>
+
     <footer>
       <p>
         © <span id="year"></span> Dani Areté. Forjado con disciplina y código.
       </p>
     </footer>
-    <script src="script.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const e = document.getElementById("preloader");
+        e &&
+          setTimeout(() => {
+            e.classList.add("hidden");
+          }, 300),
+          feather.replace();
+        const t = document.getElementById("header");
+        t &&
+          window.addEventListener("scroll", () => {
+            window.scrollY > 50
+              ? t.classList.add("scrolled")
+              : t.classList.remove("scrolled");
+          });
+        const n = document.getElementById("year");
+        n && (n.textContent = new Date().getFullYear());
+        const a = window.location.pathname.split("/").pop() || "index.html",
+          o = document.querySelectorAll(".nav-links a");
+        o.forEach((e) => {
+          e.getAttribute("href") === a && e.classList.add("active");
+        });
+      });
+    </script>
   </body>
 </html>

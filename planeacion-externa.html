@@ -1,90 +1,237 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Planeación Externa — Dani Areté</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planeación Externa – Dani Areté</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+      :root {
+        --bg-primary: #0a0a0f;
+        --bg-secondary: #151520;
+        --accent-primary: #7c3aed;
+        --accent-secondary: #a855f7;
+        --accent-glow: #c084fc;
+        --text-primary: #e5e7eb;
+        --text-secondary: #9ca3af;
+        --border: rgba(124, 58, 237, 0.2);
+        --shadow-color: rgba(124, 58, 237, 0.3);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--bg-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+      }
+      .preloader.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+      .spinner {
+        width: 60px;
+        height: 60px;
+        border: 4px solid var(--border);
+        border-top-color: var(--accent-primary);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        padding: 1.5rem 5%;
+        background: rgba(10, 10, 15, 0.8);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+      header.scrolled {
+        padding: 1rem 5%;
+        background: rgba(10, 10, 15, 0.95);
+      }
+      nav {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        font-family: "Orbitron", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 900;
+        background: linear-gradient(
+          135deg,
+          var(--accent-primary),
+          var(--accent-glow)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: 2px;
+        text-decoration: none;
+      }
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+      }
+      .nav-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+        position: relative;
+        padding: 5px 0;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent-primary);
+        transition: width 0.3s ease;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--accent-glow);
+      }
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        width: 100%;
+      }
+      section {
+        padding: 6rem 5%;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .section-title {
+        font-family: "Orbitron", sans-serif;
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        text-align: center;
+        margin-bottom: 4rem;
+        background: linear-gradient(
+          135deg,
+          var(--accent-primary),
+          var(--accent-glow)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .card {
+        background: var(--bg-secondary);
+        padding: 2.5rem;
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 2rem;
+      }
+      .card:hover {
+        transform: translateY(-10px);
+        border-color: var(--accent-primary);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+      h3 {
+        font-family: "Orbitron", sans-serif;
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        color: var(--accent-glow);
+      }
+      p {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+      }
+      blockquote {
+        font-style: italic;
+        color: var(--text-primary);
+        border-left: 3px solid var(--accent-primary);
+        padding-left: 1rem;
+        margin-top: 1rem;
+      }
+      .grid-layout-4 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+      footer {
+        text-align: center;
+        padding: 3rem 5%;
+        margin-top: 4rem;
+        border-top: 1px solid var(--border);
+        color: var(--text-secondary);
+      }
+      .main-content {
+        min-height: calc(100vh - 105px - 121px);
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="preloader">
-      <div class="spinner"></div>
-    </div>
-    <header>
-      <div class="nav-inner">
-        <div class="brand"><a href="index.html">DANI ARETÉ</a></div>
-        <nav id="main-nav">
-          <ul>
-            <li><a href="autoconocimiento.html">Autoconocimiento</a></li>
-            <li><a href="planeacion-interna.html">Planeción Interna</a></li>
-            <li>
-              <a href="planeacion-externa.html" class="nav-active"
-                >Planeación Externa</a
-              >
-            </li>
-            <li><a href="promesa-de-valor.html">Promesa de Valor</a></li>
-            <li class="mobile-only">
-              <a class="cta-small" href="index.html#contacto">Contacto</a>
-            </li>
-          </ul>
-        </nav>
-        <div class="header-cta">
-          <a class="cta-small desktop-only" href="index.html#contacto"
-            >Contacto</a
-          >
-          <button id="menu-toggle" class="menu-toggle"><span></span></button>
-        </div>
-      </div>
+    <div class="preloader" id="preloader"><div class="spinner"></div></div>
+
+    <header id="header">
+      <nav>
+        <a href="index.html" class="logo">DANI ARETÉ</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="autoconocimiento.html">Autoconocimiento</a></li>
+          <li><a href="planeacion-interna.html">Plan. Interna</a></li>
+          <li><a href="planeacion-externa.html">Plan. Externa</a></li>
+          <li><a href="promesa-de-valor.html">Promesa de Valor</a></li>
+        </ul>
+      </nav>
     </header>
+
     <main class="main-content">
-      <div class="wrap">
-        <section class="section fade-in-section">
-          <h2 class="section-title">3. Planeación Externa: Público Objetivo</h2>
-
-          <!-- Resumen Visual de Tribus -->
-          <div class="card" style="margin-bottom: 4rem">
-            <h3 class="card--centered">Las 4 Tribus de Areté</h3>
-            <div class="projects-grid" style="margin-top: 20px">
-              <div class="card">
-                <h4>🏋️ Areté Fit (El Guerrero)</h4>
-                <p><strong>Propósito:</strong> Dominar cuerpo y disciplina.</p>
-              </div>
-              <div class="card">
-                <h4>🧠 Areté Thinkers (El Sabio)</h4>
-                <p><strong>Propósito:</strong> Moldear mente y conocimiento.</p>
-              </div>
-              <div class="card">
-                <h4>🎨 Areté Creators (El Artista)</h4>
-                <p><strong>Propósito:</strong> Crear y monetizar talento.</p>
-              </div>
-              <div class="card">
-                <h4>🚀 Areté Entrepreneurs (El Visionario)</h4>
-                <p>
-                  <strong>Propósito:</strong> Construir negocios con propósito.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Detalle de Tribus -->
-          <div class="card" style="margin-bottom: 2rem">
-            <h3>
-              🏋️‍♂️ TRIBU 1: Areté Fit - "El cuerpo como templo de la disciplina."
-            </h3>
+      <section>
+        <h2 class="section-title">Fase 3: Público Objetivo (Las 4 Tribus)</h2>
+        <div class="grid-layout-4">
+          <div class="card">
+            <h3>TRIBU 1: Areté Fit (El Guerrero)</h3>
+            <p><strong>"El cuerpo como templo de la disciplina."</strong></p>
             <p>
               <strong>Buyer Persona (Alejandro "Atlas"):</strong> 24 años,
-              estudiante o en su primer empleo. Determinado pero impaciente, se
-              siente frustrado cuando no cumple sus metas físicas. Su dolor es
-              la falta de constancia y la autoexigencia extrema.
+              estudiante o en su primer empleo. Determinado pero impaciente. Su
+              dolor es la falta de constancia y la autoexigencia extrema.
             </p>
             <p>
-              <strong>Cómo Ayudas:</strong> Muestras que la disciplina no es
+              <strong>Cómo lo ayudo:</strong> Muestro que la disciplina no es
               castigo, sino libertad, enseñando a entrenar cuerpo y mente al
               mismo tiempo.
             </p>
@@ -93,101 +240,85 @@
               propósito.”
             </blockquote>
           </div>
-
-          <div class="card" style="margin-bottom: 2rem">
-            <h3>
-              🧠 TRIBU 2: Areté Thinkers - "La mente como forja de la
-              excelencia."
-            </h3>
+          <div class="card">
+            <h3>TRIBU 2: Areté Thinkers (El Sabio)</h3>
+            <p><strong>"La mente como forja de la excelencia."</strong></p>
             <p>
               <strong>Buyer Persona (Sophia):</strong> 22-28 años, estudiante o
-              profesional junior. Curiosa y perfeccionista, sufre de saturación
+              profesional junior. Curiosa y perfeccionista. Sufre de saturación
               de información y ansiedad por no aprender "lo suficiente".
             </p>
             <p>
-              <strong>Cómo Ayudas:</strong> Ofreces contenido práctico sobre
-              métodos de estudio, estrategias de aprendizaje con IA y hábitos
-              mentales sostenibles.
+              <strong>Cómo la ayudo:</strong> Ofrezco contenido práctico sobre
+              métodos de estudio, aprendizaje con IA y hábitos mentales
+              sostenibles.
             </p>
             <blockquote>
               “Aprender no es acumular datos, es moldear la mente.”
             </blockquote>
           </div>
-
-          <div class="card" style="margin-bottom: 2rem">
-            <h3>
-              🎨 TRIBU 3: Areté Creators - "El arte como reflejo de la
-              excelencia."
-            </h3>
+          <div class="card">
+            <h3>TRIBU 3: Areté Creators (El Artista)</h3>
+            <p><strong>"El arte como reflejo de la excelencia."</strong></p>
             <p>
               <strong>Buyer Persona (David "Daedalus"):</strong> 23-30 años,
-              artista digital, gamer o diseñador. Creativo y sensible, siente
-              que su talento no se traduce en ingresos y le cuesta valorarse.
+              artista digital o gamer. Creativo y sensible. Siente que su
+              talento no se traduce en ingresos y le cuesta valorarse.
             </p>
             <p>
-              <strong>Cómo Ayudas:</strong> Enseñas a combinar talento con
-              estrategia, creando contenido sobre cómo vender arte sin perder
-              autenticidad.
+              <strong>Cómo lo ayudo:</strong> Enseño a combinar talento con
+              estrategia, mostrando cómo vender arte sin perder autenticidad.
             </p>
             <blockquote>“El arte también se entrena.”</blockquote>
           </div>
-
-          <div class="card" style="margin-bottom: 4rem">
-            <h3>
-              🚀 TRIBU 4: Areté Entrepreneurs - "El propósito como motor del
-              éxito."
-            </h3>
+          <div class="card">
+            <h3>TRIBU 4: Areté Entrepreneurs (El Visionario)</h3>
+            <p><strong>"El propósito como motor del éxito."</strong></p>
             <p>
               <strong>Buyer Persona (Hermes):</strong> 25-32 años, freelancer o
-              marketer con mentalidad emprendedora. Ambicioso y visionario,
-              sufre de ansiedad por no ver resultados y se compara con otros.
+              marketer. Ambicioso y visionario. Sufre de ansiedad por no ver
+              resultados y se compara con otros.
             </p>
             <p>
-              <strong>Cómo Ayudas:</strong> Muestras que el éxito se construye
+              <strong>Cómo lo ayudo:</strong> Muestro que el éxito se construye
               con identidad, enseñando marketing consciente y mentalidad de
               crecimiento.
             </p>
             <blockquote>“El verdadero negocio eres tú.”</blockquote>
           </div>
-
-          <h2 class="section-title">Canales de Comunicación</h2>
-          <div class="projects-grid">
-            <div class="card">
-              <h3>TikTok/Reels</h3>
-              <p>
-                Captación masiva. Ideal para <strong>Areté Fit</strong>,
-                mostrando la "Ingeniería de la Disciplina".
-              </p>
-            </div>
-            <div class="card">
-              <h3>Instagram</h3>
-              <p>
-                Comunidad y credibilidad. Perfecto para
-                <strong>Areté Creators</strong>, mostrando diseño 3D y estilo de
-                vida.
-              </p>
-            </div>
-            <div class="card">
-              <h3>LinkedIn</h3>
-              <p>
-                Credibilidad profesional. Atrae a
-                <strong>Areté Thinkers</strong> y
-                <strong>Entrepreneurs</strong> con artículos sobre IA y
-                optimización.
-              </p>
-            </div>
-          </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </main>
+
     <footer>
       <p>
         © <span id="year"></span> Dani Areté. Forjado con disciplina y código.
       </p>
     </footer>
-    <script src="script.js"></script>
-    <a href="#" id="back-to-top" class="back-to-top-btn" title="Volver Arriba"
-      >↑</a
-    >
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const e = document.getElementById("preloader");
+        e &&
+          setTimeout(() => {
+            e.classList.add("hidden");
+          }, 300),
+          feather.replace();
+        const t = document.getElementById("header");
+        t &&
+          window.addEventListener("scroll", () => {
+            window.scrollY > 50
+              ? t.classList.add("scrolled")
+              : t.classList.remove("scrolled");
+          });
+        const n = document.getElementById("year");
+        n && (n.textContent = new Date().getFullYear());
+        const a = window.location.pathname.split("/").pop() || "index.html",
+          o = document.querySelectorAll(".nav-links a");
+        o.forEach((e) => {
+          e.getAttribute("href") === a && e.classList.add("active");
+        });
+      });
+    </script>
   </body>
 </html>
