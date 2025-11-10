@@ -3,7 +3,46 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Planeación Interna – Dani Areté</title>
+
+    <!-- ================== CAMBIOS AÑADIDOS [INICIO] ================== -->
+
+    <!-- 1. Título y Metadatos para SEO -->
+    <title>Planeación Interna – Sistema Dani Areté</title>
+    <meta
+      name="description"
+      content="Fase 2 del Sistema Areté: Define tus objetivos SMART y tu estrategia BANG para mejorar debilidades y alcanzar la excelencia."
+    />
+    <meta name="author" content="Daniel Rivera" />
+    <meta
+      name="keywords"
+      content="planeacion interna, objetivos smart, estrategia, areté, sistema areté"
+    />
+
+    <!-- 2. Favicon (Icono de la pestaña) -->
+    <link rel="icon" href="img/logoda.png" type="image/png" />
+
+    <!-- 3. Metadatos para Redes Sociales (WhatsApp, Facebook, etc.) -->
+    <meta
+      property="og:title"
+      content="Planeación Interna – Sistema Dani Areté"
+    />
+    <meta
+      property="og:description"
+      content="Define tus objetivos SMART y tu estrategia BANG para mejorar debilidades y alcanzar la excelencia."
+    />
+    <meta
+      property="og:image"
+      content="https://daniriveradr.github.io/dani-arete-web/img/dani-port.jpg"
+    />
+    <meta
+      property="og:url"
+      content="https://daniriveradr.github.io/dani-arete-web/planeacion-interna.html"
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- =================== CAMBIOS AÑADIDOS [FIN] ==================== -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -67,7 +106,7 @@
         position: sticky;
         top: 0;
         width: 100%;
-        padding: 1.5rem 5%;
+        padding: 1.2rem 5%;
         background: rgba(10, 10, 15, 0.8);
         backdrop-filter: blur(10px);
         border-bottom: 1px solid var(--border);
@@ -75,8 +114,7 @@
         transition: all 0.3s ease;
       }
       header.scrolled {
-        padding: 1rem 5%;
-        background: rgba(10, 10, 15, 0.95);
+        padding: 0.8rem 5%;
       }
       nav {
         max-width: 1400px;
@@ -85,20 +123,31 @@
         justify-content: space-between;
         align-items: center;
       }
+      /* ===== NUEVOS ESTILOS PARA EL LOGO DE IMAGEN Y ANIMACIÓN ===== */
       .logo {
-        font-family: "Orbitron", sans-serif;
-        font-size: 1.5rem;
-        font-weight: 900;
-        background: linear-gradient(
-          135deg,
-          var(--accent-primary),
-          var(--accent-glow)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        letter-spacing: 2px;
         text-decoration: none;
       }
+      .logo-img {
+        height: 45px;
+        animation: neon-glow 3s infinite alternate;
+        transition: transform 0.3s ease;
+        display: block;
+      }
+      .logo-img:hover {
+        transform: scale(1.05);
+      }
+      @keyframes neon-glow {
+        0%,
+        100% {
+          filter: drop-shadow(0 0 4px var(--accent-glow))
+            drop-shadow(0 0 8px var(--accent-glow));
+        }
+        50% {
+          filter: drop-shadow(0 0 8px var(--accent-primary))
+            drop-shadow(0 0 16px var(--accent-primary));
+        }
+      }
+      /* ===== FIN DE NUEVOS ESTILOS ===== */
       .nav-links {
         display: flex;
         gap: 1.5rem;
@@ -203,11 +252,17 @@
 
     <header id="header">
       <nav>
-        <a href="index.html" class="logo">DANI ARETÉ</a>
+        <!-- ================== CAMBIO DE LOGO [INICIO] ================== -->
+        <a href="index.html" class="logo">
+          <img src="img/logoda.png" alt="Dani Areté Logo" class="logo-img" />
+        </a>
+        <!-- =================== CAMBIO DE LOGO [FIN] ==================== -->
         <ul class="nav-links">
           <li><a href="index.html">Inicio</a></li>
           <li><a href="autoconocimiento.html">Autoconocimiento</a></li>
-          <li><a href="planeacion-interna.html">Plan. Interna</a></li>
+          <li>
+            <a href="planeacion-interna.html" class="active">Plan. Interna</a>
+          </li>
           <li><a href="planeacion-externa.html">Plan. Externa</a></li>
           <li><a href="promesa-de-valor.html">Promesa de Valor</a></li>
         </ul>
