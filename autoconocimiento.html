@@ -1,85 +1,234 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>DANI ARETÉ — Excelencia integral</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <!-- estilos -->
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-  <!-- HEADER -->
-  <header>
-    <div class="nav-inner">
-      <div class="brand">DANI ARETÉ</div>
-      <nav>
-        <ul>
-          <li><a href="#filosofia">Autoconocimiento</a></li>
-          <li><a href="#pilares">Planeción interna</a></li>
-          <li><a href="#proyectos">Planeación externa</a></li>
-          <li><a href="#proyectos">Promesa de valor</a></li>
-          
-        </ul>
-      </nav>
-      <div><a class="cta-small" href="#proyectos">Contacto</a></div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Autoconocimiento — Dani Areté</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="preloader">
+      <div class="spinner"></div>
     </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero" id="inicio">
-    <div class="hero-bg" id="heroPoster" aria-hidden="true"
-         style="background-image:url('https://images.unsplash.com/photo-1503264116251-35a269479413?q=80&w=1600&auto=format&fit=crop');">
-    </div>
-
-    
-
-    <!-- CONTACTO -->
-    <section id="contacto" class="section">
-      <h2 style="font-family:'Playfair Display';font-size:28px;color:var(--gold);margin-bottom:12px">Hablemos.</h2>
-      <div class="contact">
-        <form id="contactForm" onsubmit="handleContact(event)">
-          <label for="name">Nombre</label>
-          <input id="name" type="text" placeholder="Tu nombre" required>
-
-          <label for="email">Correo</label>
-          <input id="email" type="email" placeholder="tu@correo.com" required>
-
-          <label for="message">Mensaje</label>
-          <textarea id="message" placeholder="¿En qué te gustaría colaborar?" required></textarea>
-
-          <button type="submit" class="btn">Enviar un Mensaje</button>
-        </form>
-
-        <aside class="socials">
-          <div style="margin-bottom:12px;color:var(--muted)">Si prefieres, conecta en:</div>
-          <div style="display:flex;gap:10px">
-            <a href="#" aria-label="LinkedIn" style="color:var(--muted)">LinkedIn</a>
-            <a href="#" aria-label="Instagram" style="color:var(--muted)">Instagram</a>
-            <a href="#" aria-label="Behance" style="color:var(--muted)">Behance</a>
-          </div>
-
-          <div style="margin-top:20px;color:var(--muted);font-size:13px">
-            <strong>Dani Areté</strong><br>
-            Forjado con disciplina y código.
-          </div>
-        </aside>
+    <header>
+      <div class="nav-inner">
+        <div class="brand"><a href="index.html">DANI ARETÉ</a></div>
+        <nav id="main-nav">
+          <ul>
+            <li>
+              <a href="autoconocimiento.html" class="nav-active"
+                >Autoconocimiento</a
+              >
+            </li>
+            <li><a href="planeacion-interna.html">Planeción Interna</a></li>
+            <li><a href="planeacion-externa.html">Planeación Externa</a></li>
+            <li><a href="promesa-de-valor.html">Promesa de Valor</a></li>
+            <li class="mobile-only">
+              <a class="cta-small" href="index.html#contacto">Contacto</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="header-cta">
+          <a class="cta-small desktop-only" href="index.html#contacto"
+            >Contacto</a
+          >
+          <button id="menu-toggle" class="menu-toggle"><span></span></button>
+        </div>
       </div>
+    </header>
+    <main class="main-content">
+      <div class="wrap">
+        <section class="section fade-in-section">
+          <h2 class="section-title">1. Autoconocimiento</h2>
 
-    </section>
-  </main>
+          <!-- Mi Trayectoria -->
+          <div class="card" style="margin-bottom: 4rem">
+            <h3>Mi Trayectoria: La Forja de Areté</h3>
+            <p>
+              Durante los últimos diez años comencé a cultivar habilidades como
+              la creatividad, el diseño y el marketing, con la búsqueda de
+              explorar mis pasiones. La compensación económica me motiva a
+              mejorar, no solo por necesidad, sino por la satisfacción de la
+              superación y la búsqueda de la excelencia.
+            </p>
+            <p>
+              La pasión por el diseño y el automovilismo me llevó a aprender
+              modelado 3D, lo que me permitió obtener mi primer cliente y
+              trabajar como freelancer durante tres años, conectando con
+              clientes de EE. UU., Puerto Rico, Australia y Colombia. Esto me
+              impulsó a aprender inglés por mi cuenta, un reto que me tomó dos
+              años para pasar de un nivel A2 a B1.
+            </p>
+            <p>
+              A mediados de 2024, el trabajo como freelancer afectaba mi
+              bienestar, así que aproveché mi bilingüismo para trabajar en un
+              call center, buscando estabilidad y tiempo para nuevos desafíos.
+              Sin embargo, la rutina comenzó a afectar mi mente, por lo que me
+              inscribí en el gimnasio, un punto de inflexión que me ayudó a
+              construir disciplina.
+            </p>
+            <p>
+              Finalmente, una oportunidad como contratista en el sector público
+              me permitió elegir mi forma de trabajar. Con tiempo disponible,
+              sigo entrenando y practicando inglés, pero aún con la meta de
+              aumentar mis ingresos. Estudiar Ingeniería de Sistemas es el
+              siguiente gran objetivo, un reto que me obliga a salir de mi zona
+              de confort y que da vida a <strong>Dani Areté</strong>: una
+              personalidad que busca influir en otros para alcanzar la
+              autoeducación, la disciplina y la mejora constante.
+            </p>
+          </div>
 
-  <footer>
-    © <span id="year"></span> Dani Areté. Hecho en Colombia. Inspirado en Grecia. Creado con propósito.
-  </footer>
+          <!-- Dimensiones del Ser -->
+          <h2 class="section-title">Dimensiones del Ser</h2>
+          <div class="projects-grid" style="margin-bottom: 4rem">
+            <div class="card">
+              <h4>Cuerpo (Salud y Fitness) - 8/10</h4>
+              <p>
+                Constancia en el gimnasio durante 11 meses con un objetivo claro
+                de 70kg. La alimentación es fundamental. Debo mejorar la calidad
+                del sueño y el skincare, afectados por la falta de disciplina en
+                la gestión del tiempo.
+              </p>
+            </div>
+            <div class="card">
+              <h4>Espíritu (Valores)</h4>
+              <p>
+                Mis valores son
+                <strong>Espiritualidad, Conocimiento y Desafío</strong>. Creo en
+                la filosofía griega de fortalecer cuerpo y mente para lograr la
+                excelencia, superando mi propia versión de ayer.
+              </p>
+            </div>
+            <div class="card">
+              <h4>Emociones (Inteligencia Emocional)</h4>
+              <p>
+                Mi principal detonante de estrés y ansiedad es la situación
+                financiera (deudas, falta de dinero) y la rumiación sobre
+                errores pasados. Esto afecta mi sueño, concentración y salud
+                (asma, brotes en la piel).
+              </p>
+            </div>
+          </div>
 
-  <!-- Minimal JS for interactions -->
-  <!-- Minimal JS for interactions -->
-  <script src="script.js"></script>
+          <!-- Habilidades -->
+          <div class="card" style="margin-bottom: 4rem">
+            <h3 class="card--centered">Habilidades Clave</h3>
+            <ul
+              class="manifest-list"
+              style="
+                margin-top: 20px;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px 40px;
+              "
+            >
+              <li>🧠 Pensamiento analítico</li>
+              <li>🎨 Creatividad y diseño 3D</li>
+              <li>💪 Disciplina y constancia</li>
+              <li>🌍 Comunicación intercultural</li>
+              <li>🚀 Visión emprendedora</li>
+            </ul>
+          </div>
 
-</body>
+          <!-- Análisis FODA -->
+          <h2 class="section-title">Análisis FODA Estratégico</h2>
+          <div
+            class="projects-grid"
+            style="grid-template-columns: 1fr 1fr; margin-bottom: 4rem"
+          >
+            <div class="card">
+              <h3>Fortalezas</h3>
+              <p>
+                Fusión de habilidades únicas (Bilingüismo, 3D, Marketing, IA),
+                disciplina probada y liderazgo natural.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Oportunidades</h3>
+              <p>
+                Usar IA para crear contenido viral, llenar el nicho que une
+                Ingeniería y Fitness, y aprovechar la estabilidad del trabajo
+                actual.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Debilidades</h3>
+              <p>
+                Vulnerabilidad emocional al estrés financiero que afecta la
+                salud y productividad. Falta de disciplina en la gestión del
+                tiempo (sueño).
+              </p>
+            </div>
+            <div class="card">
+              <h3>Amenazas</h3>
+              <p>
+                Saturación del nicho Fitness (requiere un diferenciador claro) y
+                la fluctuación financiera como principal detonante de ansiedad.
+              </p>
+            </div>
+          </div>
+
+          <!-- Rueda de la Vida -->
+          <h2 class="section-title">La Rueda de la Vida: El Mapa de Areté</h2>
+          <div class="projects-grid">
+            <div class="card">
+              <h4>Relaciones Personales (8/10)</h4>
+              <p>
+                <strong>Prioridad:</strong> Fuerte. Mantener y nutrir este pilar
+                de soporte.
+              </p>
+            </div>
+            <div class="card">
+              <h4>Salud Física/Fitness (7/10)</h4>
+              <p>
+                <strong>Prioridad:</strong> Buena Disciplina. Foco en calidad
+                del sueño y skincare.
+              </p>
+            </div>
+            <div class="card">
+              <h4>Desarrollo Personal (5/10)</h4>
+              <p>
+                <strong>Prioridad:</strong> Potencial. Invertir tiempo libre en
+                IA como motor de la marca.
+              </p>
+            </div>
+            <div class="card">
+              <h4>Carrera/Trabajo (4/10)</h4>
+              <p>
+                <strong>Prioridad:</strong> Estabilidad. Mantener mientras la
+                marca crece para mitigar la amenaza financiera.
+              </p>
+            </div>
+            <div class="card">
+              <h4>Ocio/Diversión (4/10)</h4>
+              <p>
+                <strong>Prioridad:</strong> Baja. Integrar el Modelado 3D en la
+                marca para hacerlo rentable (pasión + negocio).
+              </p>
+            </div>
+            <div class="card">
+              <h4>Finanzas/Economía (3/10)</h4>
+              <p>
+                <strong>Prioridad:</strong> CRÍTICA. Es la raíz de la mayor
+                debilidad. El crecimiento de la marca es la tarea principal.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer>
+      <p>
+        © <span id="year"></span> Dani Areté. Forjado con disciplina y código.
+      </p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
 </html>

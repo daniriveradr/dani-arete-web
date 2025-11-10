@@ -1,177 +1,606 @@
-:root{
-      --bg: #0f0f10;
-      --panel: #121212;
-      --muted: #9a958e;
-      --gold: #d2a93b;
-      --accent: #c7a83f;
-      --glass: rgba(255,255,255,0.04);
-      --radius: 12px;
-      --max-width: 1150px;
-    }
+/* 1. PALETA DE COLORES (FUTURISTA Y PROFESIONAL REFINADA) */
+:root {
+  --bg: #0a091a; /* Azul Indigo Profundo */
+  --panel: #191632; /* Violeta Oscuro */
+  --muted: #8b89b4; /* Lavanda Desaturado */
+  --accent: #a060ff; /* Morado Amatista (Color principal) */
+  --highlight: #6c9bff; /* Azul Tecnológico */
+  --fuchsia-glow: #ff00ff; /* Fucsia para el hover luminoso */
 
-    /* Basic reset */
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
-    body{
-      font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg,#0b0b0b 0%, #0f0f10 100%);
-      color: #eee;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.45;
-      padding-bottom:80px;
-    }
+  --radius: 12px;
+  --max-width: 1150px;
+}
 
-    a{color:var(--gold);text-decoration:none}
-    img,video{max-width:100%;display:block}
+/* Reset Básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
 
-    /* Container */
-    .wrap{max-width:var(--max-width);margin:0 auto;padding:28px}
+body {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+  background: var(--bg); /* Fondo base */
+  color: #ccc;
+  line-height: 1.6;
+}
 
-    /* Header */
-    header{
-      position:fixed;left:0;right:0;top:0;z-index:60;
-      background: linear-gradient(180deg, rgba(10,10,10,0.8), rgba(10,10,10,0.2));
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid rgba(255,255,255,0.03);
-    }
-    .nav-inner{max-width:var(--max-width);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 22px}
-    .brand{font-family:"Playfair Display";letter-spacing:0.08em;color:var(--gold);font-weight:700}
-    nav ul{display:flex;gap:20px;list-style:none}
-    nav a{color:#ddd;font-weight:600;font-size:14px;opacity:0.95}
-    .cta-small{background:var(--gold);color:#0a0a0a;padding:8px 14px;border-radius:8px;font-weight:700;box-shadow:0 6px 18px rgba(200,160,60,0.08)}
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: var(--highlight);
+}
+img,
+video {
+  max-width: 100%;
+  display: block;
+}
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 28px;
+}
 
-    /* HERO */
-    .hero{
-      min-height:86vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      position:relative;
-      overflow:hidden;
-      padding-top:86px; /* for fixed header */
-    }
+.main-content {
+  /* Asegura que el contenido principal ocupe al menos el alto de la pantalla menos el header y footer */
+  min-height: calc(
+    100vh - 80px - 85px
+  ); /* CORREGIDO: Cálculo de altura del footer ajustado */
+}
 
-    /* blurred background using poster */
-    .hero-bg{
-      position:absolute;inset:0;
-      background-position:center;background-size:cover;
-      filter: blur(18px) brightness(0.42) saturate(0.9);
-      transform: scale(1.06);
-      z-index:0;
-    }
+/* 2. HEADER Y NAVEGACIÓN */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: rgba(10, 9, 26, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(176, 137, 255, 0.2);
+}
+.nav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 22px;
+}
+.brand {
+  font-family: "Syne", sans-serif;
+  letter-spacing: 0.08em;
+  color: var(--highlight);
+  font-weight: 700;
+}
+.brand a {
+  color: var(--highlight);
+}
+nav ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+nav a {
+  color: #ddd;
+  font-weight: 600;
+  font-size: 14px;
+}
+.nav-active {
+  color: var(--fuchsia-glow) !important; /* Usa fucsia para el enlace activo */
+}
+.header-cta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.cta-small {
+  background: var(--accent);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+.cta-small:hover {
+  background: var(--fuchsia-glow);
+  color: #fff;
+  box-shadow: 0 0 15px var(--fuchsia-glow);
+  transform: scale(1.05);
+}
 
-    .hero-inner{
-      position:relative;z-index:2;display:flex;gap:40px;align-items:center;justify-content:center;
-      width:100%;padding:40px;
-    }
+/* 2.1 MENÚ HAMBURGUESA */
+.menu-toggle {
+  display: none; /* Oculto en escritorio */
+  width: 24px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 101; /* Por encima del overlay */
+}
+.menu-toggle span,
+.menu-toggle span::before,
+.menu-toggle span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+.menu-toggle span::before {
+  top: -8px;
+}
+.menu-toggle span::after {
+  bottom: -8px;
+}
+.mobile-nav-open .menu-toggle span {
+  background-color: transparent; /* La barra del medio desaparece */
+}
+.mobile-nav-open .menu-toggle span::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+.mobile-nav-open .menu-toggle span::after {
+  transform: rotate(-45deg);
+  bottom: 0;
+}
+.mobile-only {
+  display: none; /* Oculto por defecto en escritorio */
+}
 
-    .hero-copy{
-      max-width:640px;color:#fff;
-      text-align:left;
-    }
-    .hero-copy h1{
-      font-family:"Playfair Display";font-weight:700;font-size:48px;color:var(--gold);line-height:1.02;margin-bottom:12px;
-      text-shadow:0 6px 28px rgba(0,0,0,0.6);
-    }
-    .hero-copy p{color:var(--muted);margin-bottom:20px;font-size:18px}
-    .hero-cta{display:flex;gap:12px}
+/* 3. SECCIÓN HERO CORREGIDA */
+.hero {
+  min-height: 86vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 40px;
+  /* Fondo de degradado cósmico aplicado aquí */
+  background: linear-gradient(160deg, #0d0c1d 0%, #1c162c 100%);
+}
+.hero-bg {
+  display: none; /* Ya no necesitamos la imagen de fondo desenfocada */
+}
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 60px; /* Aumentamos el espacio entre texto y video */
+  align-items: center;
+  width: 100%;
+  padding: 40px;
+}
+.hero-copy {
+  flex-basis: 60%; /* El texto ocupa el 60% del espacio */
+}
+.hero-copy h1 {
+  font-family: "Syne", sans-serif;
+  font-size: 48px;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+.hero-copy p {
+  color: var(--muted);
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+.hero-cta {
+  display: flex;
+  gap: 12px;
+}
+.hero-meta {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column; /* Apila los botones y el subtexto */
+  align-items: flex-start; /* Alinea los grupos a la izquierda */
+  gap: 12px;
+}
+.hero-cta-group {
+  display: flex;
+  gap: 12px;
+}
+.hero-subtext {
+  font-size: 13px;
+  color: var(--muted);
+  padding: 6px 0; /* Espaciado vertical para que no se vea como un badge */
+}
 
-    /* vertical video container */
-    .video-frame{
-      width:360px; /* desktop width of vertical video */
-      max-width:36vw;
-      height:640px;
-      border-radius:18px;
-      overflow:hidden;
-      box-shadow:0 30px 70px rgba(0,0,0,0.6), 0 6px 22px rgba(200,160,60,0.06);
-      background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.28));
-      border:1px solid rgba(255,255,255,0.03);
-      display:flex;align-items:center;justify-content:center;
-      position:relative;
-    }
-    .video-frame video{width:auto;height:100%;object-fit:cover;display:block}
+/* BOTÓN CON HOVER FUCSIA LUMINOSO */
+.btn {
+  background: var(--accent);
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  background: var(--fuchsia-glow);
+  color: #fff; /* El color del texto se mantiene blanco y visible */
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px var(--fuchsia-glow); /* Efecto incandescente */
+}
+.btn--secondary {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 11px 22px; /* 1px menos para compensar el borde */
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn--secondary:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: translateY(-3px);
+}
 
-    /* Small overlay buttons on hero */
-    .hero-quick{
-      margin-top:14px;display:flex;gap:10px;align-items:center;
-    }
-    .badge{background:var(--glass);padding:6px 10px;border-radius:999px;font-size:13px;color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
+/* CORRECCIÓN PARA VIDEO VERTICAL */
+.video-frame {
+  height: 640px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(176, 137, 255, 0.2);
+  flex-shrink: 0;
+  animation: glow-pulse 3s infinite alternate; /* Animación de resplandor fijo */
+  width: 360px; /* Ancho fijo para mantener la proporción 9:16 */
+}
+.video-frame video {
+  /* No hay cambios aquí, solo para contexto */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Asegura que el video llene el marco sin deformarse */
+}
 
-    /* MANIFIESTO */
-    .section{padding:60px 0}
-    .manifest{
-      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
-      border-radius:14px;padding:34px;border:1px solid rgba(255,255,255,0.02);display:flex;gap:28px;align-items:center;
-    }
-    .manifest-text h2{font-family:"Playfair Display";font-weight:700;color:var(--gold);font-size:28px;margin-bottom:8px}
-    .manifest-text p{color:var(--muted);font-size:15px;line-height:1.6}
-    .manifest-icons{display:flex;gap:14px;margin-top:14px}
-    .manifest-icons .item{background:rgba(255,255,255,0.02);padding:10px 12px;border-radius:10px;color:var(--muted);font-weight:600}
+.badge {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--muted);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.section {
+  padding: 60px 28px;
+}
+.section-title,
+h2,
+h3,
+h4 {
+  font-family: "Syne", sans-serif;
+  color: var(--highlight);
+  margin-bottom: 10px; /* Margen por defecto para títulos */
+}
+.section-title {
+  font-size: 32px;
+  margin-bottom: 20px;
+  text-align: center;
+}
 
-    /* Video carousel (vertical videos) */
-    .vcarousel{display:flex;gap:12px}
-    .vcard{width:150px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);background:#0a0a0a}
-    .vcard video{height:260px;width:100%;object-fit:cover;display:block}
-    .vcard .label{padding:10px;font-size:14px;color:var(--muted);text-align:center}
+/* 4. COMPONENTE CARD REUTILIZABLE */
+.card {
+  background: var(--panel);
+  border-radius: var(--radius);
+  border: 1px solid rgba(176, 137, 255, 0.1);
+  padding: 28px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(176, 137, 255, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+.card--centered {
+  text-align: center;
+}
 
-    /* PILARES */
-    .pilares-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:22px}
-    .pilar{background:rgba(255,255,255,0.02);padding:22px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);text-align:center;transition:transform .28s ease, box-shadow .28s}
-    .pilar:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(0,0,0,0.5)}
-    .pilar .icon{font-size:28px;color:var(--gold);margin-bottom:12px}
-    .pilar h3{font-family:"Playfair Display";font-size:18px;margin-bottom:8px}
-    .pilar p{color:var(--muted);font-size:14px}
+/* Se mantienen las clases semánticas, pero ahora usan el componente .card */
+.manifest {
+  padding: 28px;
+}
+.manifest {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+.vcarousel-container {
+  flex-shrink: 0;
+}
+.vcarousel {
+  display: flex;
+  gap: 12px;
+}
+blockquote {
+  margin-top: 1rem;
+  font-style: italic;
+}
+.manifest-text p {
+  margin-bottom: 25px; /* Más espacio debajo del párrafo principal */
+  color: var(--muted);
+}
+.manifest-list {
+  list-style: none; /* Quita los puntos por defecto */
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espacio entre los ítems de la lista */
+}
+.manifest-list li {
+  display: flex;
+  gap: 12px;
+}
+.vcard {
+  width: 140px; /* Ajustado para que quepan 3 tarjetas cómodamente */
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #0a091a;
+}
+.vcard video {
+  height: 260px;
+  width: 100%;
+  object-fit: cover;
+}
+.vcard .label {
+  padding: 10px;
+  font-size: 14px;
+  color: var(--muted);
+  text-align: center;
+}
 
-    /* Proyectos */
-    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
-    .project{border-radius:12px;overflow:hidden;background:#0b0b0b;border:1px solid rgba(255,255,255,0.02);position:relative}
-    .project .mock{height:260px;background:#090909;display:flex;align-items:center;justify-content:center}
-    .project .meta{padding:14px}
-    .project h4{font-size:16px;font-weight:700;color:var(--gold);margin-bottom:8px}
-    .project p{color:var(--muted);font-size:13px;margin-bottom:10px}
-    .project a{display:inline-block;padding:8px 12px;border-radius:8px;background:rgba(255,255,255,0.02);color:var(--gold);font-weight:700}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 22px;
+}
+.project {
+  /* .project ahora debe usarse junto con .card */
+  overflow: hidden;
+}
+.project .mock {
+  height: 260px;
+  overflow: hidden; /* Contiene el zoom de la imagen */
+}
+.project .mock img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease; /* Transición para el efecto de zoom */
+}
+.project:hover .mock img {
+  transform: scale(1.05); /* Efecto de zoom en la imagen al pasar el ratón */
+}
+.project .meta {
+  padding: 14px;
+}
+.project h4 {
+  color: var(--accent);
+  transition: color 0.3s ease; /* Transición para el color del título */
+}
+.project:hover h4 {
+  color: var(--fuchsia-glow); /* Realza el título al pasar el ratón */
+}
 
-    /* Timeline */
-    .timeline{display:flex;gap:12px;align-items:center;overflow:auto;padding:14px 6px}
-    .milestone{min-width:220px;background:rgba(255,255,255,0.02);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
-    .milestone h5{color:var(--gold);font-weight:700;margin-bottom:8px}
-    .milestone p{color:var(--muted);font-size:13px}
+.contact {
+  display: flex;
+  gap: 28px;
+}
+.social-link {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: #ccc;
+}
 
-    /* Contact */
-    .contact{
-      display:flex;gap:18px;align-items:flex-start;
-      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
-      padding:22px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)
-    }
-    .contact form{flex:1}
-    .contact .socials{width:260px;min-width:200px}
-    label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
-    input[type="text"],input[type="email"],textarea{
-      width:100%;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:#eee;margin-bottom:12px;font-size:14px;
-    }
-    textarea{min-height:120px;resize:vertical}
-    .btn{background:var(--gold);color:#0a0a0a;padding:10px 14px;border-radius:10px;font-weight:700;border:none;cursor:pointer}
+/* Estilos para el formulario de contacto */
+form label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: var(--muted);
+}
+input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(176, 137, 255, 0.2);
+  background: #0a091a;
+  color: #eee;
+  margin-bottom: 12px;
+}
 
-    /* Footer */
-    footer{margin-top:40px;text-align:center;color:var(--muted);padding:28px 12px}
+.socials-footer {
+  margin-top: 20px; /* Espacio encima del texto del pie de página */
+  font-size: 13px;
+  color: var(--muted);
+}
 
-    /* Responsive */
-    @media (max-width:1000px){
-      .pilares-grid{grid-template-columns:repeat(2,1fr)}
-      .projects-grid{grid-template-columns:repeat(2,1fr)}
-      .video-frame{width:320px;height:560px}
-      .vcard video{height:220px}
-    }
-    @media (max-width:720px){
-      .nav-inner{padding:10px 12px}
-      nav ul{display:none}
-      .hero-inner{flex-direction:column-reverse;padding:18px}
-      .video-frame{width:70vw;height:60vh}
-      .hero-copy{text-align:center}
-      .pilares-grid{grid-template-columns:1fr}
-      .projects-grid{grid-template-columns:1fr}
-      .manifest{flex-direction:column}
-      .hero-copy h1{font-size:30px}
-      .wrap{padding:12px}
-    }
+@media (max-width: 1000px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 720px) {
+  .desktop-only {
+    display: none !important;
+  }
+  .mobile-only {
+    display: block !important;
+  }
+  .menu-toggle {
+    display: block; /* Muestra el botón hamburguesa */
+  }
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    height: 100%;
+  }
+  nav a {
+    font-size: 24px; /* Letras más grandes para móvil */
+  }
+  nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg);
+    z-index: 100;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    display: flex; /* Para centrar el UL */
+    align-items: center;
+    justify-content: center;
+  }
+  .mobile-nav-open nav {
+    transform: translateX(0);
+  }
+  .mobile-nav-open body {
+    overflow: hidden; /* Evita el scroll del fondo cuando el menú está abierto */
+  }
+  .hero-inner,
+  .manifest,
+  .contact {
+    flex-direction: column;
+    align-items: center; /* Centra los elementos del contacto en móvil */
+  }
+  .hero-copy {
+    text-align: center;
+  }
+  .hero-cta {
+    justify-content: center;
+  }
+  .hero-meta {
+    align-items: center; /* Centra los botones y subtexto en móvil */
+  }
+  .vcarousel {
+    overflow-x: auto; /* Habilita el scroll horizontal */
+    padding-bottom: 15px; /* Espacio para la barra de scroll */
+    /* Ocultar la barra de scroll visualmente */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .vcarousel::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+  .vcarousel-container {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 20px;
+  }
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 5. FOOTER CONSISTENTE */
+footer {
+  margin-top: 60px;
+  padding: 28px;
+  border-top: 1px solid rgba(176, 137, 255, 0.1);
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* 6. ANIMACIÓN DE SCROLL */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animación para el resplandor del video principal */
+@keyframes glow-pulse {
+  0% {
+    box-shadow: 0 0 40px -10px var(--highlight); /* Azul */
+  }
+  50% {
+    box-shadow: 0 0 40px -10px var(--fuchsia-glow); /* Fucsia */
+  }
+  100% {
+    box-shadow: 0 0 40px -10px var(--highlight); /* Vuelve a Azul */
+  }
+}
+
+/* 7. PRELOADER */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+#preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(176, 137, 255, 0.2);
+  border-top-color: var(--highlight);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 8. BOTÓN VOLVER ARRIBA */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--accent);
+  color: white;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+  z-index: 50;
+}
+.back-to-top-btn.show {
+  opacity: 1;
+  visibility: visible;
+}

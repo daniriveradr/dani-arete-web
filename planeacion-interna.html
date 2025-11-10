@@ -1,260 +1,140 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>DANI ARETÉ — Excelencia integral</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <!-- estilos -->
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-  <!-- HEADER -->
-  <header>
-    <div class="nav-inner">
-      <div class="brand">DANI ARETÉ</div>
-      <nav>
-        <ul>
-          <li><a href="#filosofia">Autoconocimiento</a></li>
-          <li><a href="#pilares">Planeción interna</a></li>
-          <li><a href="#proyectos">Planeación externa</a></li>
-          <li><a href="#proyectos">Promesa de valor</a></li>
-          
-        </ul>
-      </nav>
-      <div><a class="cta-small" href="#proyectos">Contacto</a></div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Planeación Interna — Dani Areté</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="preloader">
+      <div class="spinner"></div>
     </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero" id="inicio">
-    <div class="hero-bg" id="heroPoster" aria-hidden="true"
-         style="background-image:url('https://images.unsplash.com/photo-1503264116251-35a269479413?q=80&w=1600&auto=format&fit=crop');">
-    </div>
-
-    <div class="hero-inner wrap">
-      <div class="hero-copy">
-        <h1>La excelencia no es un acto, es un hábito.</h1>
-        <p>Bienvenido al viaje hacia tu mejor versión. Aquí combino disciplina, creatividad y tecnología para esculpir resultados reales.</p>
-        <div class="hero-cta">
-          <a class="btn" href="#filosofia">Descubre mi filosofía</a>
-          <a class="badge" href="#proyectos">Ver proyectos</a>
-        </div>
-
-        <div class="hero-quick" style="margin-top:16px">
-          <div class="badge">Fundado por Daniel Rivera</div>
-          <div class="badge">Areté • Excelencia integral</div>
+    <header>
+      <div class="nav-inner">
+        <div class="brand"><a href="index.html">DANI ARETÉ</a></div>
+        <nav id="main-nav">
+          <ul>
+            <li><a href="autoconocimiento.html">Autoconocimiento</a></li>
+            <li>
+              <a href="planeacion-interna.html" class="nav-active"
+                >Planeación Interna</a
+              >
+            </li>
+            <li><a href="planeacion-externa.html">Planeación Externa</a></li>
+            <li><a href="promesa-de-valor.html">Promesa de Valor</a></li>
+            <li class="mobile-only">
+              <a class="cta-small" href="index.html#contacto">Contacto</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="header-cta">
+          <a class="cta-small desktop-only" href="index.html#contacto"
+            >Contacto</a
+          >
+          <button id="menu-toggle" class="menu-toggle"><span></span></button>
         </div>
       </div>
+    </header>
+    <main class="wrap main-content">
+      <section class="section fade-in-section">
+        <h2 class="section-title">2. Planeación Estratégica</h2>
 
-      <!-- Vertical video centered with blurred sides background effect already provided -->
-      <div class="video-frame" aria-hidden="false">
-        <!-- REEMPLAZA los src por tus videos verticales -->
-        <video id="heroVideo" autoplay muted loop playsinline >
-          <source src="videos/vertical_1.mp4" type="video/mp4">
-          <!-- Si no tienes video, reemplaza por imagen -->
-          Tu navegador no soporta video.
-        </video>
-      </div>
-
-    </div>
-  </section>
-
-  <main class="wrap">
-
-    <!-- MANIFIESTO -->
-    <section id="filosofia" class="section">
-      <div class="manifest">
-        <div style="flex:1" class="manifest-text">
-          <h2>Mi Manifiesto: Areté</h2>
-          <p style="font-size:15px;color:var(--muted);">
-            "No busco la perfección, busco progreso. Dani Areté nace de la convicción de que todos podemos esculpir una mejor versión
-            de nosotros mismos a través de la disciplina, la creatividad y el aprendizaje constante."
+        <div class="card" style="margin-bottom: 4rem">
+          <h3>2.1. Planeación Interna: Objetivos SMART y Estrategia BANG</h3>
+          <p>
+            Tu enfoque en la acción inmediata (duplicar salario, habilidades de
+            networking en redes) para resolver el detonante de la ansiedad
+            (Finanzas/3) es la definición de Autorregulación aplicada. Tu visión
+            de ser Ingeniero de AI es el objetivo de largo plazo (Visión Areté),
+            pero necesitamos un Objetivo SMART para los próximos 12 meses que
+            actúe como catalizador de ingresos y estabilidad.
           </p>
-
-          <div class="manifest-icons">
-            <div class="item">🏋️ Disciplina</div>
-            <div class="item">🎓 Aprendizaje</div>
-            <div class="item">🎨 Creación</div>
-          </div>
         </div>
 
-        <!-- Carrusel vertical de videos cortos -->
-        <div style="width:360px;max-width:42%;" aria-hidden="false">
-          <div style="font-weight:700;color:var(--gold);margin-bottom:8px">Evidencia en acción</div>
-          <div class="vcarousel" id="vcarousel">
-            <!-- REEMPLAZA los src por tus videos -->
-            <div class="vcard">
-              <video muted loop playsinline preload="metadata" poster="">
-                <source src="videos/vertical_2.mp4" type="video/mp4">
-              </video>
-              <div class="label">Disciplina</div>
-            </div>
-            <div class="vcard">
-              <video muted loop playsinline preload="metadata" poster="">
-                <source src="videos/vertical_3.mp4" type="video/mp4">
-              </video>
-              <div class="label">Creatividad</div>
-            </div>
-            <div class="vcard">
-              <video muted loop playsinline preload="metadata" poster="">
-                <source src="videos/vertical_4.mp4" type="video/mp4">
-              </video>
-              <div class="label">Aprendizaje</div>
-            </div>
+        <h3 class="section-title" style="font-size: 24px; text-align: left">
+          Objetivo SMART para Dani Areté (12 Meses)
+        </h3>
+        <div class="card" style="margin-bottom: 4rem">
+          <h4>Específico (S)</h4>
+          <p>
+            Lograr la certificación de Técnico en Sistemas (en CUN) para optar a
+            roles de mayor nivel que permitan duplicar el salario actual, y
+            establecer la base de mi comunidad en redes (1,000 seguidores
+            combinados).
+          </p>
+          <h4>Medible (M)</h4>
+          <p>
+            1. Certificado de Técnico en Sistemas obtenido. 2. Salario duplicado
+            (Métrica de Ingresos). 3. 1,000 seguidores orgánicos en redes
+            sociales. 4. Nivel C1 en Inglés (medible con un test simulado).
+          </p>
+          <h4>Alcanzable (A)</h4>
+          <p>
+            Sí. La certificación técnica es un objetivo controlable, y la
+            duplicación salarial es realista al subir el nivel de cualificación.
+            1,000 seguidores es una base modesta y sostenible.
+          </p>
+          <h4>Relevante (R)</h4>
+          <p>
+            CRÍTICO. Resuelve directamente la Debilidad #1 (Finanzas/3) y libera
+            la carga emocional de la ansiedad, permitiendo la concentración
+            total en la Ingeniería de AI a largo plazo.
+          </p>
+          <h4>Tiempo (T)</h4>
+          <p>En los próximos 12 meses (Noviembre 2025).</p>
+        </div>
+
+        <div class="card" style="margin-bottom: 4rem">
+          <h3>Estrategia Creativa: BANG (Mejora de Debilidades)</h3>
+          <p>
+            <strong>Solución (Matriz de Ocio Productivo):</strong> La
+            eliminación de tiempo de ocio pasivo en redes sociales se
+            reemplazará por la Producción Activa de Contenido. Los momentos que
+            antes dedicabas a consumir redes, ahora serán invertidos en crear
+            clips de fitness o de Modelado 3D, y estudiar AI/Inglés C1. Esto
+            convierte la gestión de tiempo desordenada en una Matriz de
+            Inversión de Habilidades.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <div class="card">
+            <h3>Método BANG: 🔮 Crystal</h3>
+            <p>
+              Representa disciplina, constancia, autonomía y visión a largo
+              plazo. Busca alcanzar el potencial máximo de uno mismo. Tu marca
+              "Dani Areté" es, en esencia, una marca de autorrealización.
+            </p>
+          </div>
+          <div class="card">
+            <h3>"The Areté Lab" — La excelencia como sistema</h3>
+            <p>
+              <strong>Idea:</strong> Convertir tu proceso personal de mejora en
+              un sistema medible que otros puedan seguir.
+            </p>
+            <p>
+              <strong>Slogan:</strong> "Transformo la excelencia en un proceso
+              medible."
+            </p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- PILARES -->
-    <section id="pilares" class="section">
-      <h2 style="font-family:'Playfair Display';font-size:28px;color:var(--gold);margin-bottom:12px">Los 4 Pilares de la Excelencia</h2>
-      <div class="pilares-grid">
-        <div class="pilar">
-          <div class="icon">🏋️</div>
-          <h3>Cuerpo</h3>
-          <p>El gimnasio como laboratorio de disciplina: hábitos que transforman el rendimiento físico y mental.</p>
-        </div>
-        <div class="pilar">
-          <div class="icon">🧠</div>
-          <h3>Mente</h3>
-          <p>Aprendizaje continuo: dominar idiomas, herramientas y la exploración de la inteligencia artificial.</p>
-        </div>
-        <div class="pilar">
-          <div class="icon">🎨</div>
-          <h3>Creación</h3>
-          <p>Convertir ideas en 3D y experiencias digitales que se sienten reales y precisas.</p>
-        </div>
-        <div class="pilar">
-          <div class="icon">🚀</div>
-          <h3>Estrategia</h3>
-          <p>Marketing y negocios digitales: diseño de proyectos que perduran y generan impacto medible.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROYECTOS -->
-    <section id="proyectos" class="section">
-      <h2 style="font-family:'Playfair Display';font-size:28px;color:var(--gold);margin-bottom:12px">Proyectos Destacados</h2>
-
-      <div class="projects-grid" id="projectsGrid">
-        <!-- Proyecto 1 -->
-        <article class="project">
-          <div class="mock">
-            <!-- mockup phone with video inside; replace the source to an mp4 preview or an image -->
-            <!-- <video muted loop playsinline style="width:220px;height:440px;object-fit:cover;border-radius:10px">
-              <source src="img/jucayman_1.jpg" type="video/mp4">
-            </video> -->
-            <img src="img/jucayman_1.jpg" alt="">
-          </div>
-          <div class="meta">
-            <h4>Render Automotriz</h4>
-            <p>Modelado hard-surface y render con enfoque aerodinámico y realismo técnico.</p>
-            <!-- <a href="#proyecto1" class="open-project">Ver proyecto</a> -->
-          </div>
-        </article>
-
-        <!-- Proyecto 2 -->
-        <article class="project">
-          <div class="mock">
-            <!-- <video muted loop playsinline style="width:220px;height:440px;object-fit:cover;border-radius:10px">
-              <source src="videos/project_ai.mp4" type="video/mp4">
-            </video> -->
-            <img src="img/dani-escritorio.JPG" alt="">
-          </div>
-          <div class="meta">
-            <h4>Proyecto IA</h4>
-            <p>Prototipos que integran IA para acelerar procesos creativos y productivos.</p>
-            <!-- <a href="#proyecto2" class="open-project">Ver proyecto</a> -->
-          </div>
-        </article>
-
-        <!-- Proyecto 3 -->
-        <article class="project">
-          <div class="mock">
-            <!-- <video muted loop playsinline style="width:220px;height:440px;object-fit:cover;border-radius:10px">
-              <source src="videos/project_marketing.mp4" type="video/mp4">
-            </video> -->
-            <img src="img/dani-escritorio.JPG" alt="">
-          </div>
-          <div class="meta">
-            <h4>Campaña de Marketing</h4>
-            <p>Estrategia digital para posicionamiento y conversión con pruebas A/B y aprendizaje iterativo.</p>
-            <!-- <a href="#proyecto3" class="open-project">Ver proyecto</a> -->
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- TIMELINE -->
-    <section class="section">
-      <h2 style="font-family:'Playfair Display';font-size:28px;color:var(--gold);margin-bottom:12px">Mi Camino hacia la Excelencia</h2>
-      <div class="timeline" aria-label="Línea del tiempo">
-        <div class="milestone">
-          <h5>2019</h5>
-          <p>Comienzo en Blender y modelado 3D. Primeros proyectos freelance.</p>
-        </div>
-        <div class="milestone">
-          <h5>2021</h5>
-          <p>Clientes internacionales y trabajo en mods para simuladores.</p>
-        </div>
-        <div class="milestone">
-          <h5>2023</h5>
-          <p>Integré IA y marketing a mis procesos creativos.</p>
-        </div>
-        <div class="milestone">
-          <h5>2025</h5>
-          <p>Nace Dani Areté: fusión de arte, disciplina y tecnología.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACTO -->
-    <section id="contacto" class="section">
-      <h2 style="font-family:'Playfair Display';font-size:28px;color:var(--gold);margin-bottom:12px">Hablemos.</h2>
-      <div class="contact">
-        <form id="contactForm" onsubmit="handleContact(event)">
-          <label for="name">Nombre</label>
-          <input id="name" type="text" placeholder="Tu nombre" required>
-
-          <label for="email">Correo</label>
-          <input id="email" type="email" placeholder="tu@correo.com" required>
-
-          <label for="message">Mensaje</label>
-          <textarea id="message" placeholder="¿En qué te gustaría colaborar?" required></textarea>
-
-          <button type="submit" class="btn">Enviar un Mensaje</button>
-        </form>
-
-        <aside class="socials">
-          <div style="margin-bottom:12px;color:var(--muted)">Si prefieres, conecta en:</div>
-          <div style="display:flex;gap:10px">
-            <a href="#" aria-label="LinkedIn" style="color:var(--muted)">LinkedIn</a>
-            <a href="#" aria-label="Instagram" style="color:var(--muted)">Instagram</a>
-            <a href="#" aria-label="Behance" style="color:var(--muted)">Behance</a>
-          </div>
-
-          <div style="margin-top:20px;color:var(--muted);font-size:13px">
-            <strong>Dani Areté</strong><br>
-            Forjado con disciplina y código.
-          </div>
-        </aside>
-      </div>
-
-    </section>
-  </main>
-
-  <footer>
-    © <span id="year"></span> Dani Areté. Hecho en Colombia. Inspirado en Grecia. Creado con propósito.
-  </footer>
-
-  <!-- Minimal JS for interactions -->
-  <script src="script.js"></script>
-
-</body>
+      </section>
+    </main>
+    <footer>
+      <p>
+        © <span id="year"></span> Dani Areté. Forjado con disciplina y código.
+      </p>
+    </footer>
+    <script src="script.js"></script>
+    <a href="#" id="back-to-top" class="back-to-top-btn" title="Volver Arriba"
+      >↑</a
+    >
+  </body>
 </html>

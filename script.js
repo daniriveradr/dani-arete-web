@@ -1,58 +1,104 @@
-// year
-    document.getElementById('year').textContent = new Date().getFullYear();
+window.addEventListener("load", () => {
+  const preloader = document.getElementById("preloader");
+  if (preloader) {
+    // Agrega la clase para iniciar la animación de desvanecimiento
+    preloader.classList.add("hidden");
+    // Opcional: elimina el preloader del DOM después de que termine la transición
+    setTimeout(() => {
+      preloader.style.display = "none";
+    }, 500); // Debe coincidir con la duración de la transición en CSS
+  }
+});
 
-    // Smooth scroll for nav links
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', function(e){
-        e.preventDefault();
-        const id = this.getAttribute('href').slice(1);
-        const el = document.getElementById(id);
-        if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
-      });
-    });
+document.addEventListener("DOMContentLoaded", () => {
+  const yearSpan = document.getElementById("year");
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+  }
 
-    // Play muted videos on visibility (basic)
-    const vids = document.querySelectorAll('video');
-    function playVisible(){
-      vids.forEach(v=>{
-        const rect = v.getBoundingClientRect();
-        if(rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) + 120){
-          v.play().catch(()=>{});
-        } else {
-          // keep looping but pause if far out of view to save CPU
-          try{ v.pause(); } catch(e){}
-        }
-      });
+  const videos = document.querySelectorAll("video");
+  videos.forEach((video) => {
+    // Pausar todos los videos al inicio, excepto el del Hero
+    if (video.id !== "heroVideo") {
+      video.pause();
     }
-    window.addEventListener('scroll', playVisible);
-    window.addEventListener('resize', playVisible);
-    playVisible();
+    // Reproducir al pasar el mouse por encima
+    video.addEventListener("mouseenter", () => {
+      video.play().catch(() => {});
+    });
+    video.addEventListener("mouseleave", () => {
+      video.pause();
+    });
+  });
 
-    // Simple contact handler (demo: replace with form action or backend)
-    function handleContact(e){
+  const contactForm = document.getElementById("contactForm");
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
       e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
 
-      if(!name || !email || !message){
-        alert('Por favor completa todos los campos.');
+      if (!name || !email || !message) {
+        alert("Por favor completa todos los campos.");
         return;
       }
 
-      // Demo behaviour: open mailto (quick)
-      const subject = encodeURIComponent('Contacto desde Dani Areté — ' + name);
-      const body = encodeURIComponent(message + '\n\nContacto: ' + name + ' — ' + email);
-      window.location.href = `mailto:tuemail@ejemplo.com?subject=${subject}&body=${body}`;
+      const subject = encodeURIComponent(
+        "Contacto desde la web Areté - " + name
+      );
+      const body = encodeURIComponent(
+        message + "\n\nDe: " + name + " (" + email + ")"
+      );
+      // CORREO ELECTRÓNICO CORREGIDO
+      window.location.href = `mailto:ed.river98@gmail.com?subject=${subject}&body=${body}`;
 
-      // If you have a backend, here you'd send via fetch to your endpoint.
-    }
+      contactForm.reset();
+    });
+  }
 
-    // Accessibility: enable keyboard focus outlines for keyboard users only
-    function handleFirstTab(e) {
-      if (e.key === 'Tab') {
-        document.body.classList.add('show-focus-outline');
-        window.removeEventListener('keydown', handleFirstTab);
+  // Animación de Fade-in para secciones al hacer scroll
+  const sectionsToAnimate = document.querySelectorAll(".fade-in-section");
+
+  if (sectionsToAnimate.length > 0) {
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target); // Dejar de observar una vez que es visible
+          }
+        });
+      },
+      {
+        rootMargin: "0px 0px -100px 0px", // Activa la animación un poco antes de que llegue al borde
       }
-    }
-    window.addEventListener('keydown', handleFirstTab);
+    );
+
+    sectionsToAnimate.forEach((section) => observer.observe(section));
+  }
+
+  // Lógica del Menú Hamburguesa
+  const menuToggle = document.getElementById("menu-toggle");
+  const mainNav = document.getElementById("main-nav");
+  const body = document.body;
+
+  if (menuToggle && mainNav) {
+    menuToggle.addEventListener("click", () => {
+      body.classList.toggle("mobile-nav-open");
+    });
+  }
+
+  // Lógica del botón "Volver Arriba"
+  const backToTopButton = document.getElementById("back-to-top");
+
+  if (backToTopButton) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.add("show");
+      } else {
+        backToTopButton.classList.remove("show");
+      }
+    });
+  }
+});
