@@ -1,36 +1,58 @@
-document.addEventListener('DOMContentLoaded', () => {
+// year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    // 1. EFECTO DE HEADER AL HACER SCROLL
-    const header = document.getElementById('main-header');
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        const id = this.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+    });
+
+    // Play muted videos on visibility (basic)
+    const vids = document.querySelectorAll('video');
+    function playVisible(){
+      vids.forEach(v=>{
+        const rect = v.getBoundingClientRect();
+        if(rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) + 120){
+          v.play().catch(()=>{});
         } else {
-            header.classList.remove('scrolled');
+          // keep looping but pause if far out of view to save CPU
+          try{ v.pause(); } catch(e){}
         }
-    });
+      });
+    }
+    window.addEventListener('scroll', playVisible);
+    window.addEventListener('resize', playVisible);
+    playVisible();
 
-    // 2. ANIMACIÓN DE APARICIÓN (FADE-IN) AL HACER SCROLL
-    const fadeInElements = document.querySelectorAll('.fade-in');
+    // Simple contact handler (demo: replace with form action or backend)
+    function handleContact(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
 
-    const observerOptions = {
-        root: null, // usa el viewport como el área de observación
-        rootMargin: '0px',
-        threshold: 0.1 // el elemento se considera visible cuando el 10% está en pantalla
-    };
+      if(!name || !email || !message){
+        alert('Por favor completa todos los campos.');
+        return;
+      }
 
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target); // Dejar de observar después de animar una vez
-            }
-        });
-    }, observerOptions);
+      // Demo behaviour: open mailto (quick)
+      const subject = encodeURIComponent('Contacto desde Dani Areté — ' + name);
+      const body = encodeURIComponent(message + '\n\nContacto: ' + name + ' — ' + email);
+      window.location.href = `mailto:tuemail@ejemplo.com?subject=${subject}&body=${body}`;
 
-    fadeInElements.forEach(el => {
-        observer.observe(el);
-    });
+      // If you have a backend, here you'd send via fetch to your endpoint.
+    }
 
-});
+    // Accessibility: enable keyboard focus outlines for keyboard users only
+    function handleFirstTab(e) {
+      if (e.key === 'Tab') {
+        document.body.classList.add('show-focus-outline');
+        window.removeEventListener('keydown', handleFirstTab);
+      }
+    }
+    window.addEventListener('keydown', handleFirstTab);
